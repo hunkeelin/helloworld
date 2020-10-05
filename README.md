@@ -10,3 +10,8 @@ Simple webapp that listens on port `8080` and prints `hello world` and timestamp
 go build -o helloworld helloworld.go
 ./helloworld
 ```
+
+### Helm
+```bash
+helm upgrade -i helloworld . -n ${namespace}
+```
