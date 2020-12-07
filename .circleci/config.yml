@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:             
+    docker:
+      - image: public.ecr.aws/q7t9x1p4/platform-build:latest
+    steps:      
+      - checkout
+      - run: echo "hi"
+      - run: helm version && kubectl version && aws --version
+workflows:
+  version: 2
+  plan-and-apply:
+    jobs:
+      - build
