@@ -7,6 +7,7 @@ jobs:
       - checkout
       - run: echo "hi"
       - run: helm version 
+      - run:  aws eks update-kubeconfig --name "${EKS_CLUSTER_NAME}" --region us-west-2
       - run: kubectl version
       - run: aws --version
 workflows:
