@@ -5,11 +5,8 @@ jobs:
       - image: public.ecr.aws/q7t9x1p4/platform-build:latest
     steps:      
       - checkout
-      - run: echo "${EKS_CLUSTER_NAME}"
-      - run: helm version 
       - run: aws eks update-kubeconfig --name "${EKS_CLUSTER_NAME}" --region us-west-2
-      - run: kubectl version
-      - run: aws --version
+      - run: kubectl get namespaces
 workflows:
   version: 2
   build-and-push:
