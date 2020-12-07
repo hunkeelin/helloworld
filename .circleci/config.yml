@@ -9,6 +9,6 @@ jobs:
       - run: helm version && kubectl version && aws --version
 workflows:
   version: 2
-  plan-and-apply:
+  build-and-push:
     jobs:
       - build
