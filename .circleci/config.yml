@@ -5,7 +5,7 @@ jobs:
       - image: public.ecr.aws/q7t9x1p4/platform-build:latest
     steps:      
       - checkout
-      - run: echo "hi"
+      - run: echo "${EKS_CLUSTER_NAME}"
       - run: helm version 
       - run:  aws eks update-kubeconfig --name "infra-west-eks" --region us-west-2
       - run: kubectl version
