@@ -2,7 +2,8 @@ version: 2
 jobs:
   build:             
     docker:
-      - image: public.ecr.aws/q7t9x1p4/platform-build:latest
+      #- image: public.ecr.aws/q7t9x1p4/platform-build:latest
+      - image: klin732/awscli-go
     steps:      
       - checkout
       - run: aws eks update-kubeconfig --name "${EKS_CLUSTER_NAME}" --region us-west-2
