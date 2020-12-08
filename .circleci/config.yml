@@ -29,5 +29,5 @@ workflows:
             - test
       - deploy:
           requires:
-            - apply-approve
+            - deploy-approve
 
