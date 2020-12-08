@@ -1,6 +1,16 @@
 version: 2
 jobs:
-  build:             
+  test:             
+    docker:
+      - image: klin732/awscli-go
+    steps:      
+      - checkout
+      - run: aws eks update-kubeconfig --name "${EKS_CLUSTER_NAME}" --region us-west-2
+      - run: helm version
+      - run: kubectl version
+      - run: aws --version
+      - run: kubectl get namespaces 
+  deploy:             
     docker:
       #- image: public.ecr.aws/q7t9x1p4/platform-build:latest
       - image: klin732/awscli-go
@@ -10,6 +20,14 @@ jobs:
       - run: cd helm && eval "${INSTALL_STRING}"
 workflows:
   version: 2
-  build-and-push:
+  test-and-deploy:
     jobs:
-      - build
+      - test
+      - deploy-approve:
+          type: approval
+          requires:
+            - test
+      - deploy:
+          requires:
+            - apply-approve
+
