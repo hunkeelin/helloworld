@@ -5,10 +5,9 @@
 replicaCount: 1
 
 image:
-  repository: klin732/helloworld
+  repository: klin732/helloworld:nocontent
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
