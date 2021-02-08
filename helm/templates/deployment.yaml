@@ -1,23 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include .Values.name . }}
+  name: {{ .Values.name  }}
+  labels: 
+    app: {{ .Values.name }}
 spec:
 {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
 {{- end }}
+  selector:
+    matchLabels: 
+      app: {{ .Values.name }}
   template:
     metadata:
     {{- with .Values.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+      labels: 
+        app: {{ .Values.name }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include .Values.name . }}
+      serviceAccountName: {{ .Values.name }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
