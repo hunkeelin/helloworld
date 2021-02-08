@@ -9,7 +9,6 @@ jobs:
       - run: helm version
       - run: kubectl version
       - run: aws --version
-      - run: kubectl get namespaces 
       - run: cd helm && eval "${INSTALL_STRING} --dry-run"
   deploy:             
     docker:
