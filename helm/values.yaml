@@ -12,7 +12,7 @@ image:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
+name: helloworld
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
