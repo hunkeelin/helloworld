@@ -10,6 +10,7 @@ jobs:
       - run: kubectl version
       - run: aws --version
       - run: kubectl get namespaces 
+      - run: cd helm && eval "${INSTALL_STRING} --dry-run"
   deploy:             
     docker:
       #- image: public.ecr.aws/q7t9x1p4/platform-build:latest
